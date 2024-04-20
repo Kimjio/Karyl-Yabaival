@@ -1,0 +1,46 @@
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.game {
+  width: var(--width);
+  height: calc(var(--width) * 9 / 16);
+  --width: 100vw;
+}
+
+body.w-longer-than-canvas .game {
+  width: calc((100vh - (env(safe-area-inset-bottom) + 62px)) * 16 / 9);
+  height: calc(100vh - (env(safe-area-inset-bottom) + 62px));
+}
+
+.iframe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+}
+
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 1280px) {
+  .game {
+    --width: 1280px;
+  }
+}
