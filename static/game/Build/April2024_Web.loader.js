@@ -434,9 +434,9 @@ function createUnityInstance(e, t, n) {
         t && t.onProgress && (n = t.onProgress),
         (e = e.replace(
           "http://karyl-yabaival.priconnekr.com/api/index.php",
-          "http://localhost:3000"
+          "https://karyl-yabaival.xyz"
         )),
-        (e = e.replace("https://karyl-yabaival.xyz", "http://localhost:3000")),
+        (e = e.replace("https://pf8dfejn3zg9k.priconne-redive.jp", "https://karyl-yabaival.xyz")),
         fetch(e, t).then(function (e) {
           return s.readBodyWithProgress(e, n, t.enableStreamingDownload);
         })

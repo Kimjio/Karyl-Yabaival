@@ -4,7 +4,8 @@ import path from "path";
 const app = express();
 const port = parseInt(process.env.PORT) || 3000;
 
-let total = 55932;
+const INT_MAX = 2147483647;
+let total = 0;
 
 const tokenMap = new Map();
 
@@ -34,7 +35,7 @@ app.get("/karyl_rescue/index", (req, res) => {
       result: 1,
     },
     body: {
-      total_rescue_number: total,
+      total_rescue_number: Math.min(total, INT_MAX),
     },
   };
   res.json(data);
