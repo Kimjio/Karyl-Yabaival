@@ -20,8 +20,10 @@ body {
 }
 
 body.w-longer-than-canvas .game {
-  width: calc((100vh - (env(safe-area-inset-bottom) + 62px)) * 16 / 9);
-  height: calc(100vh - (env(safe-area-inset-bottom) + 62px));
+  /* width: calc((100vh - (env(safe-area-inset-bottom) + 62px)) * 16 / 9);
+  height: calc(100vh - (env(safe-area-inset-bottom) + 62px)); */
+  width: calc((100vh - env(safe-area-inset-bottom)) * 16 / 9);
+  height: calc(100vh - env(safe-area-inset-bottom));
 }
 
 .iframe-wrapper {
@@ -39,8 +41,8 @@ body.w-longer-than-canvas .game {
   height: 100%;
 }
 
-@media (min-width: 1280px) {
+/* @media (min-width: 1920px) {
   .game {
-    --width: 1280px;
+    --width: 1920px;
   }
-}
+} */

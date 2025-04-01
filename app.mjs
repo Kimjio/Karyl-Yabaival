@@ -4,7 +4,7 @@ import path from "path";
 const app = express();
 const port = parseInt(process.env.PORT) || 3000;
 
-let total = 0;
+let total = 55932;
 
 const tokenMap = new Map();
 
@@ -54,7 +54,7 @@ app.get("/karyl_rescue/start", (req, res) => {
 });
 
 app.post("/karyl_rescue/end", (req, res) => {
-  if (!tokenMap.has(req.body.token) || !req.header('Game-Version')) {
+  if (!tokenMap.has(req.body.token) || !req.header("Game-Version")) {
     res.status(403).json({
       header: {
         date: new Date().getTime(),
@@ -65,6 +65,26 @@ app.post("/karyl_rescue/end", (req, res) => {
   }
 
   tokenMap.delete(req.body.token);
+
+  if (req.body.rescue_number > 5) {
+    const lang = req.headers["accept-language"]?.split(",");
+
+    res.status(200).json({
+      header: {
+        date: new Date().getTime(),
+        result: 205,
+      },
+      body: {
+        error_notice: {
+          status: 1,
+          message: lang[0].includes("ko")
+            ? "오류가 발생했습니다. 게임을 다시 시작합니다."
+            : "エラーが発生しました。ゲームを再起動します。",
+        },
+      },
+    });
+    return;
+  }
 
   total += req.body.rescue_number;
 
@@ -80,9 +100,9 @@ app.post("/karyl_rescue/end", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  const lang = req.headers["accept-language"]?.split(',');
+  const lang = req.headers["accept-language"]?.split(",");
 
-  if (lang[0].includes('ko')) {
+  if (lang[0].includes("ko")) {
     res.sendFile("static/ko.html", { root: path.resolve() });
     return;
   }

@@ -432,6 +432,11 @@ function createUnityInstance(e, t, n) {
       var n = function () {};
       return (
         t && t.onProgress && (n = t.onProgress),
+        (e = e.replace(
+          "http://karyl-yabaival.priconnekr.com/api/index.php",
+          "http://localhost:3000"
+        )),
+        (e = e.replace("https://karyl-yabaival.xyz", "http://localhost:3000")),
         fetch(e, t).then(function (e) {
           return s.readBodyWithProgress(e, n, t.enableStreamingDownload);
         })
