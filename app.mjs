@@ -104,11 +104,11 @@ app.get("/", (req, res) => {
   const lang = req.headers["accept-language"]?.split(",");
 
   if (lang[0].includes("ko")) {
-    res.sendFile("static/ko.html", { root: path.resolve() });
+    res.redirect('ko');
     return;
   }
 
-  res.sendFile("static/ja.html", { root: path.resolve() });
+  res.redirect('ja');
 });
 
 app.use(express.static("static"));
